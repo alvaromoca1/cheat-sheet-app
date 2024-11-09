@@ -1,0 +1,361 @@
+[
+  {
+    "command": "terraform apply",
+    "description": "Crea o actualiza la infraestructura según los archivos de configuración",
+    "opciones": [
+      "-auto-approve: Aplica cambios sin necesidad de aprobación interactiva",
+      "-lock=false: No mantiene un bloqueo de estado durante la operación",
+      "-parallelism=<n>: Especifica el número de operaciones ejecutadas en paralelo",
+      "-var='nombre=valor': Pasa un valor de variable",
+      "-var-file='archivo.tfvars': Pasa variables contenidas en un archivo",
+      "-target='recurso': Aplica cambios solo al recurso especificado"
+    ],
+    "ejemplos": [
+      "terraform apply",
+      "terraform apply -auto-approve",
+      "terraform apply plan.tfplan",
+      "terraform apply -lock=false",
+      "terraform apply -parallelism=5",
+      "terraform apply -var='environment=dev'",
+      "terraform apply -var-file='prod.tfvars'",
+      "terraform apply -target='module.appgw.0'"
+    ]
+  },
+  {
+    "command": "terraform init",
+    "description": "Inicializa un directorio de trabajo para uso con Terraform, incluyendo la inicialización del backend, instalación de módulos y plugins",
+    "opciones": [
+      "-get-plugins=false: No descarga plugins",
+      "-lock=false: No mantiene un bloqueo de estado durante la migración del backend",
+      "-input=false: Desactiva los prompts interactivos",
+      "-migrate-state: Reconfigura un backend e intenta migrar el estado existente",
+      "-verify-plugins=false: No verifica la firma de Hashicorp en los plugins",
+      "-upgrade: Actualiza los módulos y plugins existentes a las últimas versiones",
+      "-reconfigure: Reconfigura el backend, ignorando cualquier estado guardado"
+    ],
+    "ejemplos": [
+      "terraform init",
+      "terraform init -get-plugins=false",
+      "terraform init -lock=false",
+      "terraform init -input=false",
+      "terraform init -migrate-state",
+      "terraform init -verify-plugins=false",
+      "terraform init -upgrade"
+    ]
+  },
+  {
+    "command": "terraform plan",
+    "description": "Genera un plan de ejecución mostrando las acciones que se tomarán sin ejecutarlas realmente",
+    "opciones": [
+      "-out=<path>: Guarda el plan en un archivo para usarlo posteriormente con terraform apply",
+      "-destroy: Crea un plan para destruir todos los objetos",
+      "-refresh=false: No actualiza el estado antes de verificar diferencias",
+      "-target=resource: Genera un plan solo para el recurso especificado",
+      "-var 'nombre=valor': Establece una variable desde la línea de comandos",
+      "-var-file=archivo.tfvars: Especifica un archivo de variables personalizado"
+    ],
+    "ejemplos": [
+      "terraform plan",
+      "terraform plan -out=plan.tfplan",
+      "terraform plan -destroy",
+      "terraform plan -target=aws_instance.example",
+      "terraform plan -var 'environment=production'",
+      "terraform plan -var-file=prod.tfvars"
+    ]
+  },
+  {
+    "command": "terraform destroy",
+    "description": "Destruye toda la infraestructura gestionada por Terraform",
+    "opciones": [
+      "-auto-approve: Destruye la infraestructura sin necesidad de confirmación interactiva",
+      "-target='recurso': Destruye solo el recurso especificado",
+      "-var='nombre=valor': Pasa un valor de variable",
+      "-var-file='archivo.tfvars': Usa variables de un archivo específico",
+      "-parallelism=n: Número de operaciones paralelas a ejecutar"
+    ],
+    "ejemplos": [
+      "terraform destroy",
+      "terraform destroy --auto-approve",
+      "terraform destroy -target='module.appgw.0'",
+      "terraform destroy -target='module.appgw.resource[\"key\"]'",
+      "terraform destroy -var='environment=dev'",
+      "terraform destroy -var-file='prod.tfvars'"
+    ]
+  },
+  {
+    "command": "terraform version",
+    "description": "Muestra la versión actual de Terraform e informa si hay una versión más reciente disponible",
+    "opciones": [],
+    "ejemplos": [
+      "terraform version"
+    ]
+  },
+  {
+    "command": "terraform fmt",
+    "description": "Formatea los archivos de configuración de Terraform según los estándares HCL",
+    "opciones": [
+      "--recursive: Formatea también archivos en subdirectorios",
+      "--diff: Muestra las diferencias entre los archivos originales y los cambios de formato",
+      "--check: Verifica si los archivos están formateados correctamente (útil para CI/CD)",
+      "--no-color: Desactiva el color en la salida",
+      "--list=false: No lista los archivos formateados"
+    ],
+    "ejemplos": [
+      "terraform fmt",
+      "terraform fmt --recursive",
+      "terraform fmt --diff",
+      "terraform fmt --check",
+      "terraform fmt path/to/directory"
+    ]
+  },
+  {
+    "command": "terraform get",
+    "description": "Descarga e instala los módulos necesarios para la configuración",
+    "opciones": [
+      "-update: Verifica y actualiza los módulos a las versiones más recientes disponibles",
+      "-no-color: Desactiva el color en la salida",
+      "-no-verify: Omite las verificaciones de suma de comprobación"
+    ],
+    "ejemplos": [
+      "terraform get",
+      "terraform get -update",
+      "terraform get -no-verify"
+    ]
+  },
+  {
+    "command": "terraform validate",
+    "description": "Valida los archivos de configuración en tu directorio sin acceder a ningún estado remoto o servicios",
+    "opciones": [
+      "-json: Muestra la salida en formato JSON para una mejor visualización de errores y advertencias",
+      "-no-color: Desactiva el color en la salida",
+      "-check-variables=true: Comprueba que todas las variables requeridas están definidas"
+    ],
+    "ejemplos": [
+      "terraform validate",
+      "terraform validate -json",
+      "terraform validate -check-variables=true"
+    ]
+  },
+  {
+    "command": "terraform -help",
+    "description": "Obtiene una lista de comandos disponibles para ejecución con sus descripciones",
+    "opciones": [
+      "-json: Muestra la ayuda en formato JSON"
+    ],
+    "ejemplos": [
+      "terraform -help",
+      "terraform fmt -help",
+      "terraform plan -help"
+    ]
+  },
+  {
+    "command": "terraform plan -out",
+    "description": "Guarda el plan de ejecución en un archivo que puede ser usado posteriormente con terraform apply",
+    "opciones": [
+      "-destroy: Crea un plan para destruir todos los objetos",
+      "-refresh=false: No actualiza el estado antes de planificar",
+      "-input=false: Desactiva las solicitudes de entrada",
+      "-target=resource: Planifica solo para el recurso específico"
+    ],
+    "ejemplos": [
+      "terraform plan -out=plan.tfplan",
+      "terraform plan -out=destroy.tfplan -destroy",
+      "terraform plan -out=plan.tfplan -target=aws_instance.example",
+      "terraform plan -out=prod.tfplan -var-file=prod.tfvars"
+    ]
+  },
+  {
+    "command": "terraform destroy",
+    "description": "Destruye toda la infraestructura gestionada por Terraform",
+    "opciones": [
+      "-auto-approve: Destruye la infraestructura sin necesidad de confirmación interactiva",
+      "-target='recurso': Destruye solo el recurso especificado",
+      "-var='nombre=valor': Pasa un valor de variable",
+      "-var-file='archivo.tfvars': Usa variables de un archivo específico",
+      "-parallelism=n: Número de operaciones paralelas a ejecutar"
+    ],
+    "ejemplos": [
+      "terraform destroy",
+      "terraform destroy --auto-approve",
+      "terraform destroy -target='module.appgw.0'",
+      "terraform destroy -target='module.appgw.resource[\"key\"]'",
+      "terraform destroy -var='environment=dev'",
+      "terraform destroy -var-file='prod.tfvars'"
+    ]
+  },
+  {
+    "command": "terraform taint",
+    "description": "Marca un recurso como no funcional para que sea eliminado y recreado en la próxima aplicación",
+    "opciones": [
+      "-allow-missing: No genera error si el recurso no existe",
+      "-module=path: Especifica el módulo que contiene el recurso",
+      "-ignore-remote-version: Ignora las comprobaciones de versión remota"
+    ],
+    "ejemplos": [
+      "terraform taint vm1.name",
+      "terraform taint 'aws_instance.example[0]'",
+      "terraform taint 'module.foo.aws_instance.example'",
+      "terraform taint -allow-missing 'aws_instance.example'"
+    ]
+  },
+  {
+    "command": "terraform untaint",
+    "description": "Elimina la marca de taint de un recurso previamente marcado",
+    "opciones": [
+      "-allow-missing: No genera error si el recurso no existe",
+      "-module=path: Especifica el módulo que contiene el recurso",
+      "-ignore-remote-version: Ignora las comprobaciones de versión remota"
+    ],
+    "ejemplos": [
+      "terraform untaint vm1.name",
+      "terraform untaint 'aws_instance.example[0]'",
+      "terraform untaint 'module.foo.aws_instance.example'",
+      "terraform untaint -allow-missing 'aws_instance.example'"
+    ]
+  },
+  {
+    "command": "terraform refresh",
+    "description": "Modifica el archivo de estado con metadatos actualizados de los recursos gestionados en Terraform, sin modificar la infraestructura",
+    "opciones": [
+      "-var='nombre=valor': Especifica valores de variables",
+      "-var-file='archivo.tfvars': Usa variables de un archivo",
+      "-input=false: Desactiva la entrada interactiva",
+      "-target='recurso': Actualiza solo el recurso especificado"
+    ],
+    "ejemplos": [
+      "terraform refresh",
+      "terraform refresh -var='environment=prod'",
+      "terraform refresh -var-file='prod.tfvars'",
+      "terraform refresh -target='aws_instance.example'"
+    ]
+  },
+  {
+    "command": "terraform show",
+    "description": "Muestra el archivo de estado en un formato legible para humanos",
+    "opciones": [
+      "-json: Muestra el estado en formato JSON",
+      "-no-color: Desactiva el color en la salida"
+    ],
+    "ejemplos": [
+      "terraform show",
+      "terraform show path/to/terraform.tfstate",
+      "terraform show -json",
+      "terraform show -no-color"
+    ]
+  },
+  {
+    "command": "terraform state",
+    "description": "Manipula el archivo de estado de Terraform",
+    "opciones": [
+      "list: Lista todos los recursos en el archivo de estado actual",
+      "mv: Mueve un elemento en el estado",
+      "pull: Obtiene el estado actual y lo guarda en un archivo local",
+      "push: Actualiza el estado remoto desde el archivo local",
+      "replace-provider: Reemplaza un proveedor",
+      "rm: Elimina una instancia específica del archivo de estado",
+      "show: Muestra un recurso específico en el archivo de estado"
+    ],
+    "ejemplos": [
+      "terraform state list",
+      "terraform state mv vm1.oldname vm1.newname",
+      "terraform state pull > state.tfstate",
+      "terraform state push",
+      "terraform state replace-provider hashicorp/azurerm customproviderregistry/azurerm",
+      "terraform state rm aws_instance.example",
+      "terraform state show aws_instance.example"
+    ]
+  },
+  {
+    "command": "terraform workspace",
+    "description": "Gestiona los workspaces de Terraform. Los workspaces son útiles para probar diferentes versiones del código, pero no se recomiendan para separar entornos de desarrollo",
+    "opciones": [
+      "show: Muestra el nombre del workspace actual",
+      "list: Lista todos los workspaces",
+      "select: Selecciona un workspace específico",
+      "new: Crea un nuevo workspace",
+      "delete: Elimina un workspace específico"
+    ],
+    "ejemplos": [
+      "terraform workspace show",
+      "terraform workspace list",
+      "terraform workspace select dev",
+      "terraform workspace new feature-branch",
+      "terraform workspace delete old-feature"
+    ]
+  },
+  {
+    "command": "terraform output",
+    "description": "Lista todas las salidas (outputs) almacenadas en el archivo de estado",
+    "opciones": [
+      "-state=<path>: Lista las salidas de un archivo de estado específico",
+      "-json: Muestra las salidas en formato JSON",
+      "-raw: Muestra el valor sin formato de una única salida",
+      "nombre_salida: Muestra una salida específica"
+    ],
+    "ejemplos": [
+      "terraform output",
+      "terraform output -state=path/to/terraform.tfstate",
+      "terraform output -json",
+      "terraform output vm1_public_ip",
+      "terraform output -raw dns_name"
+    ]
+  },
+  {
+    "command": "terraform force-unlock",
+    "description": "Elimina el bloqueo con el ID especificado de tu workspace. Útil cuando un bloqueo se ha quedado 'atascado' después de una ejecución incompleta de Terraform",
+    "opciones": [
+      "-force: Salta la confirmación interactiva",
+      "LOCK_ID: ID del bloqueo a eliminar"
+    ],
+    "ejemplos": [
+      "terraform force-unlock LOCK_ID",
+      "terraform force-unlock -force LOCK_ID",
+      "terraform force-unlock a1b2c3d4-e5f6",
+      "terraform force-unlock -force a1b2c3d4-e5f6"
+    ]
+  },
+  {
+    "command": "terraform login",
+    "description": "Obtiene un token API para Terraform Cloud o un host específico",
+    "opciones": [
+      "hostname: Especifica un host para iniciar sesión",
+      "-no-browser: Evita abrir el navegador automáticamente"
+    ],
+    "ejemplos": [
+      "terraform login",
+      "terraform login app.terraform.io",
+      "terraform login custom.terraform-host.com",
+      "terraform login -no-browser"
+    ]
+  },
+  {
+    "command": "terraform logout",
+    "description": "Elimina las credenciales almacenadas localmente después de iniciar sesión",
+    "opciones": [
+      "hostname: Especifica el host del cual cerrar sesión"
+    ],
+    "ejemplos": [
+      "terraform logout",
+      "terraform logout app.terraform.io",
+      "terraform logout custom.terraform-host.com"
+    ]
+  },
+  {
+    "command": "terraform graph",
+    "description": "Produce un gráfico en lenguaje DOT mostrando las dependencias entre objetos en el archivo de estado",
+    "opciones": [
+      "-plan=archivo: Produce un gráfico usando un archivo de plan específico",
+      "-type=tipo: Especifica el tipo de gráfico (plan, plan-refresh-only, plan-destroy, apply)",
+      "-draw-cycles: Muestra ciclos de dependencia entre recursos",
+      "-module-depth=n: Profundidad máxima para módulos anidados"
+    ],
+    "ejemplos": [
+      "terraform graph",
+      "terraform graph -plan=tfplan",
+      "terraform graph -type=plan",
+      "terraform graph -type=plan-destroy",
+      "terraform graph -draw-cycles",
+      "terraform graph > dependency-graph.dot"
+    ]
+  }
+]

@@ -1,0 +1,261 @@
+[
+  {
+    "command": "kubectl cluster-info",
+    "description": "Muestra información del cluster",
+    "opciones": [],
+    "ejemplos": [
+      "kubectl cluster-info",
+      "kubectl cluster-info dump"
+    ]
+  },
+  {
+    "command": "kubectl get nodes",
+    "description": "Lista todos los nodos en el cluster",
+    "opciones": [
+      "-o wide: Muestra información adicional",
+      "--show-labels: Muestra todas las etiquetas",
+      "-l key=value: Filtra por etiqueta"
+    ],
+    "ejemplos": [
+      "kubectl get nodes",
+      "kubectl get nodes -o wide",
+      "kubectl get nodes --show-labels"
+    ]
+  },
+  {
+    "command": "kubectl get pods",
+    "description": "Lista todos los pods en el namespace actual",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "--all-namespaces: Muestra pods de todos los namespaces",
+      "-o wide: Muestra información adicional",
+      "--show-labels: Muestra todas las etiquetas"
+    ],
+    "ejemplos": [
+      "kubectl get pods",
+      "kubectl get pods -n kube-system",
+      "kubectl get pods --all-namespaces"
+    ]
+  },
+  {
+    "command": "kubectl describe pod",
+    "description": "Muestra información detallada sobre un pod específico",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "-f filename: Describe los pods definidos en el archivo"
+    ],
+    "ejemplos": [
+      "kubectl describe pod myapp-pod",
+      "kubectl describe pod myapp-pod -n production",
+      "kubectl describe -f pod.yaml"
+    ]
+  },
+  {
+    "command": "kubectl logs",
+    "description": "Imprime los logs de un pod específico",
+    "opciones": [
+      "-f: Sigue los logs en tiempo real",
+      "--tail=N: Muestra las últimas N líneas",
+      "-p: Muestra los logs del contenedor previo si existe",
+      "-c container: Especifica el contenedor en pods multi-contenedor"
+    ],
+    "ejemplos": [
+      "kubectl logs myapp-pod",
+      "kubectl logs -f myapp-pod",
+      "kubectl logs myapp-pod -c container1"
+    ]
+  },
+  {
+    "command": "kubectl get deployments",
+    "description": "Lista todos los deployments en el namespace actual",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "--all-namespaces: Muestra deployments de todos los namespaces",
+      "-o wide: Muestra información adicional"
+    ],
+    "ejemplos": [
+      "kubectl get deployments",
+      "kubectl get deployments -n production",
+      "kubectl get deployments --all-namespaces"
+    ]
+  },
+  {
+    "command": "kubectl scale deployment",
+    "description": "Escala el número de réplicas de un deployment",
+    "opciones": [
+      "--replicas=N: Establece el número de réplicas",
+      "--current-replicas=N: Verifica el número actual de réplicas",
+      "-n namespace: Especifica el namespace"
+    ],
+    "ejemplos": [
+      "kubectl scale deployment myapp --replicas=3",
+      "kubectl scale deployment myapp --replicas=3 -n production",
+      "kubectl scale deployment myapp --current-replicas=2 --replicas=3"
+    ]
+  },
+  {
+    "command": "kubectl create namespace",
+    "description": "Crea un nuevo namespace",
+    "opciones": [
+      "--dry-run: Simula la creación sin ejecutarla",
+      "-o yaml: Genera la configuración en formato YAML"
+    ],
+    "ejemplos": [
+      "kubectl create namespace my-namespace",
+      "kubectl create namespace my-namespace --dry-run -o yaml"
+    ]
+  },
+  {
+    "command": "kubectl apply",
+    "description": "Aplica un archivo de configuración para crear o actualizar recursos",
+    "opciones": [
+      "-f filename: Especifica el archivo de configuración",
+      "--recursive: Aplica archivos de un directorio recursivamente",
+      "--dry-run: Simula la aplicación sin ejecutarla"
+    ],
+    "ejemplos": [
+      "kubectl apply -f deployment.yaml",
+      "kubectl apply -f ./configs/",
+      "kubectl apply -f deployment.yaml --dry-run"
+    ]
+  },
+  {
+    "command": "kubectl get namespaces",
+    "description": "Lista todos los namespaces en el cluster",
+    "opciones": [
+      "--show-labels: Muestra las etiquetas",
+      "-o wide: Muestra información adicional",
+      "--field-selector: Filtra por campo específico"
+    ],
+    "ejemplos": [
+      "kubectl get namespaces",
+      "kubectl get namespaces --show-labels",
+      "kubectl get namespaces -o wide"
+    ]
+  },
+  {
+    "command": "kubectl describe namespace",
+    "description": "Muestra información detallada sobre un namespace específico",
+    "opciones": [
+      "-o yaml: Muestra la salida en formato YAML",
+      "-o json: Muestra la salida en formato JSON"
+    ],
+    "ejemplos": [
+      "kubectl describe namespace my-namespace",
+      "kubectl describe namespace my-namespace -o yaml",
+      "kubectl describe namespace kube-system"
+    ]
+  },
+  {
+    "command": "kubectl create namespace",
+    "description": "Crea un nuevo namespace",
+    "opciones": [
+      "--dry-run=client: Simula la creación sin ejecutarla",
+      "-o yaml: Genera la configuración en formato YAML",
+      "--save-config: Guarda la configuración para uso futuro"
+    ],
+    "ejemplos": [
+      "kubectl create namespace development",
+      "kubectl create namespace production --dry-run=client -o yaml",
+      "kubectl create namespace testing --save-config"
+    ]
+  },
+  {
+    "command": "kubectl delete namespace",
+    "description": "Elimina un namespace específico",
+    "opciones": [
+      "--force: Fuerza la eliminación",
+      "--grace-period=0: Elimina inmediatamente",
+      "--wait=false: No espera a que se complete la eliminación"
+    ],
+    "ejemplos": [
+      "kubectl delete namespace development",
+      "kubectl delete namespace development --force",
+      "kubectl delete namespace development --grace-period=0"
+    ]
+  },
+  {
+    "command": "kubectl create configmap",
+    "description": "Crea un ConfigMap desde un archivo o valores literales",
+    "opciones": [
+      "--from-file: Crea desde un archivo",
+      "--from-literal: Crea desde un par clave-valor literal",
+      "--from-env-file: Crea desde un archivo de variables de entorno"
+    ],
+    "ejemplos": [
+      "kubectl create configmap app-config --from-file=config.properties",
+      "kubectl create configmap app-config --from-literal=API_URL=http://api.example.com",
+      "kubectl create configmap app-config --from-env-file=.env"
+    ]
+  },
+  {
+    "command": "kubectl create secret generic",
+    "description": "Crea un Secret desde un archivo o valores literales",
+    "opciones": [
+      "--from-file: Crea desde un archivo",
+      "--from-literal: Crea desde un par clave-valor literal",
+      "--from-env-file: Crea desde un archivo de variables de entorno"
+    ],
+    "ejemplos": [
+      "kubectl create secret generic db-secret --from-literal=password=mysecret",
+      "kubectl create secret generic ssl-cert --from-file=ssl.key",
+      "kubectl create secret generic app-secrets --from-env-file=.secrets"
+    ]
+  },
+  {
+    "command": "kubectl describe configmap",
+    "description": "Muestra información detallada sobre un ConfigMap específico",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "-o yaml: Muestra la salida en formato YAML",
+      "-o json: Muestra la salida en formato JSON"
+    ],
+    "ejemplos": [
+      "kubectl describe configmap app-config",
+      "kubectl describe configmap app-config -n production",
+      "kubectl describe configmap app-config -o yaml"
+    ]
+  },
+  {
+    "command": "kubectl describe secret",
+    "description": "Muestra información detallada sobre un Secret específico",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "-o yaml: Muestra la salida en formato YAML",
+      "-o json: Muestra la salida en formato JSON"
+    ],
+    "ejemplos": [
+      "kubectl describe secret db-secret",
+      "kubectl describe secret db-secret -n production",
+      "kubectl describe secret db-secret -o yaml"
+    ]
+  },
+  {
+    "command": "kubectl get configmaps",
+    "description": "Lista todos los ConfigMaps en el namespace actual",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "--all-namespaces: Muestra ConfigMaps de todos los namespaces",
+      "-o wide: Muestra información adicional"
+    ],
+    "ejemplos": [
+      "kubectl get configmaps",
+      "kubectl get configmaps -n production",
+      "kubectl get configmaps --all-namespaces"
+    ]
+  },
+  {
+    "command": "kubectl get secrets",
+    "description": "Lista todos los Secrets en el namespace actual",
+    "opciones": [
+      "-n namespace: Especifica el namespace",
+      "--all-namespaces: Muestra Secrets de todos los namespaces",
+      "-o wide: Muestra información adicional"
+    ],
+    "ejemplos": [
+      "kubectl get secrets",
+      "kubectl get secrets -n production",
+      "kubectl get secrets --all-namespaces"
+    ]
+  }
+]

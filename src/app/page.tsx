@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import dockerLogo from './public/images/docker.png';
+import kuberLogo from './public/images/kuber.png';
+import terraformLogo from './public/images/terraform.png';
 import styles from './styles/NavigationCard.module.css';
 
 const NavigationCard = () => {
@@ -11,6 +13,18 @@ const NavigationCard = () => {
       description: "Explora todos los comandos de Docker y su documentación",
       href: "/docker-commands",
       imageUrl: dockerLogo
+    },
+    {
+      title: "Kubernetes Commands",
+      description: "Explora todos los comandos de Kubernetes y su documentación",
+      href: "/kuber-commands",
+      imageUrl: kuberLogo
+    },
+    {
+      title: "Terraform Commands",
+      description: "Explora todos los comandos de Terraform y su documentación",
+      href: "/terraform-commands",
+      imageUrl: terraformLogo
     }
   ];
 
