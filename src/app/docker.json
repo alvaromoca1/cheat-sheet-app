@@ -1,0 +1,336 @@
+[
+  {
+    "command": "docker-compose up",
+    "description": "Crea e inicia todos los servicios definidos en docker-compose.yml",
+    "opciones": [
+      "-d: Modo detached (background)",
+      "--build: Reconstruye las imágenes antes de iniciar",
+      "--force-recreate: Recrea los contenedores aunque no hayan cambios",
+      "--scale SERVICE=NUM: Escala un servicio a N instancias"
+    ],
+    "ejemplos": [
+      "docker-compose up -d",
+      "docker-compose up --build web",
+      "docker-compose up --scale web=3"
+    ]
+  },
+  {
+    "command": "docker-compose down",
+    "description": "Detiene y elimina todos los servicios, redes y contenedores creados por up",
+    "opciones": [
+      "-v, --volumes: Elimina los volúmenes nombrados",
+      "--rmi all: Elimina todas las imágenes",
+      "--remove-orphans: Elimina contenedores huérfanos"
+    ],
+    "ejemplos": [
+      "docker-compose down -v",
+      "docker-compose down --rmi all",
+      "docker-compose down --volumes --remove-orphans"
+    ]
+  },
+  {
+    "command": "docker-compose ps",
+    "description": "Lista los contenedores y su estado",
+    "opciones": [
+      "-q: Solo muestra IDs",
+      "--services: Lista servicios",
+      "-a: Muestra todos los contenedores"
+    ],
+    "ejemplos": [
+      "docker-compose ps",
+      "docker-compose ps -q",
+      "docker-compose ps --services"
+    ]
+  },
+  {
+    "command": "docker-compose logs",
+    "description": "Muestra los logs de los servicios",
+    "opciones": [
+      "-f: Sigue los logs en tiempo real",
+      "--tail N: Muestra las últimas N líneas",
+      "-t: Muestra timestamps"
+    ],
+    "ejemplos": [
+      "docker-compose logs -f web",
+      "docker-compose logs --tail=100 db",
+      "docker-compose logs -f -t api"
+    ]
+  },
+  {
+    "command": "docker-compose build",
+    "description": "Construye o reconstruye servicios",
+    "opciones": [
+      "--no-cache: No usa cache en la construcción",
+      "--pull: Siempre intenta descargar nuevas versiones de imágenes",
+      "--parallel: Construcción paralela"
+    ],
+    "ejemplos": [
+      "docker-compose build --no-cache",
+      "docker-compose build web",
+      "docker-compose build --pull"
+    ]
+  },
+  {
+    "command": "docker-compose exec",
+    "description": "Ejecuta un comando en un contenedor en ejecución",
+    "opciones": [
+      "-T: Deshabilita pseudo-tty",
+      "--index=N: Index del contenedor si hay múltiples",
+      "-u USER: Especifica usuario"
+    ],
+    "ejemplos": [
+      "docker-compose exec web bash",
+      "docker-compose exec db psql -U postgres",
+      "docker-compose exec -T web npm test"
+    ]
+  },
+  {
+    "command": "docker-compose run",
+    "description": "Ejecuta un comando único en un servicio",
+    "opciones": [
+      "--rm: Elimina el contenedor después de ejecutar",
+      "--no-deps: No inicia servicios vinculados",
+      "-e KEY=VAL: Define variables de entorno"
+    ],
+    "ejemplos": [
+      "docker-compose run --rm web npm install",
+      "docker-compose run --no-deps web bash",
+      "docker-compose run -e DEBUG=1 web"
+    ]
+  },
+  {
+    "command": "docker-compose config",
+    "description": "Valida y muestra la configuración del compose",
+    "opciones": [
+      "--services: Lista servicios",
+      "--volumes: Lista volúmenes",
+      "--hash: Hash de la configuración"
+    ],
+    "ejemplos": [
+      "docker-compose config --services",
+      "docker-compose config --quiet",
+      "docker-compose config --volumes"
+    ]
+  },
+  {
+    "command": "docker-compose pull",
+    "description": "Descarga imágenes de servicios",
+    "opciones": [
+      "--ignore-pull-failures: Continúa en caso de errores",
+      "--parallel: Pull paralelo",
+      "--quiet: No muestra progreso"
+    ],
+    "ejemplos": [
+      "docker-compose pull",
+      "docker-compose pull web db",
+      "docker-compose pull --parallel"
+    ]
+  },
+  {
+    "command": "docker-compose push",
+    "description": "Sube imágenes de servicios a un registro",
+    "opciones": [
+      "--ignore-push-failures: Continúa en caso de errores",
+      "--quiet: No muestra progreso"
+    ],
+    "ejemplos": [
+      "docker-compose push",
+      "docker-compose push web",
+      "docker-compose push --ignore-push-failures"
+    ]
+  },
+  {
+    "command": "docker-compose restart",
+    "description": "Reinicia servicios",
+    "opciones": [
+      "-t, --timeout SECONDS: Timeout para detener"
+    ],
+    "ejemplos": [
+      "docker-compose restart",
+      "docker-compose restart web",
+      "docker-compose restart -t 30"
+    ]
+  },
+  {
+    "command": "docker-compose rm",
+    "description": "Elimina contenedores detenidos",
+    "opciones": [
+      "-f: No pregunta confirmación",
+      "-v: Elimina volúmenes asociados",
+      "-s: Detiene contenedores si están corriendo"
+    ],
+    "ejemplos": [
+      "docker-compose rm -f",
+      "docker-compose rm -v web",
+      "docker-compose rm -sf"
+    ]
+  },
+  {
+    "command": "docker-compose start",
+    "description": "Inicia servicios existentes",
+    "ejemplos": [
+      "docker-compose start",
+      "docker-compose start web",
+      "docker-compose start web db"
+    ]
+  },
+  {
+    "command": "docker-compose stop",
+    "description": "Detiene servicios",
+    "opciones": [
+      "-t, --timeout SECONDS: Timeout para detener"
+    ],
+    "ejemplos": [
+      "docker-compose stop",
+      "docker-compose stop web",
+      "docker-compose stop -t 30"
+    ]
+  },
+  {
+    "command": "docker-compose top",
+    "description": "Muestra los procesos en ejecución",
+    "ejemplos": [
+      "docker-compose top",
+      "docker-compose top web",
+      "docker-compose top db"
+    ]
+  },
+  {
+    "command": "docker-compose pause",
+    "description": "Pausa servicios",
+    "ejemplos": [
+      "docker-compose pause",
+      "docker-compose pause web",
+      "docker-compose pause db web"
+    ]
+  },
+  {
+    "command": "docker-compose unpause",
+    "description": "Reanuda servicios pausados",
+    "ejemplos": [
+      "docker-compose unpause",
+      "docker-compose unpause web",
+      "docker-compose unpause db web"
+    ]
+  },
+  {
+    "command": "docker-compose version",
+    "description": "Muestra la versión de Docker Compose",
+    "ejemplos": [
+      "docker-compose version",
+      "docker-compose version --short"
+    ]
+  },
+  {
+    "command": "docker version",
+    "description": "Muestra la versión y detalles de Docker instalado en el sistema.",
+    "ejemplos": [
+      "docker version",
+      "docker version --format '{{.Server.Version}}'",
+      "docker version --format json"
+    ]
+  },
+  {
+    "command": "docker --help",
+    "description": "Muestra la ayuda general de Docker con todos los comandos disponibles.",
+    "ejemplos": [
+      "docker --help",
+      "docker -h",
+      "docker help"
+    ]
+  },
+  {
+    "command": "docker COMANDO --help",
+    "description": "Muestra la ayuda específica del comando Docker especificado.",
+    "ejemplos": [
+      "docker run --help",
+      "docker build --help",
+      "docker network --help"
+    ]
+  },
+  {
+    "command": "docker ps",
+    "description": "Lista los contenedores activos actualmente en ejecución.",
+    "opciones": [
+      "-a: Muestra todos los contenedores",
+      "-q: Solo muestra los IDs",
+      "-s: Muestra el tamaño de los contenedores",
+      "--format: Formatea la salida",
+      "--no-trunc: No trunca la salida"
+    ],
+    "ejemplos": [
+      "docker ps",
+      "docker ps --format '{{.Names}} {{.Status}}'",
+      "docker ps -a -q"
+    ]
+  },
+  {
+    "command": "docker ps -a",
+    "description": "Lista todos los contenedores, tanto activos como detenidos.",
+    "opciones": [
+      "--format: Formatea la salida",
+      "-q: Solo muestra los IDs",
+      "-n N: Muestra los últimos N contenedores",
+      "--size: Muestra el tamaño de los contenedores"
+    ],
+    "ejemplos": [
+      "docker ps -a",
+      "docker ps -a --format '{{.Names}} {{.Status}}'",
+      "docker ps -a -q",
+      "docker ps -a -n 5"
+    ]
+  },
+  {
+    "command": "docker ps -l",
+    "description": "Lista el último contenedor creado, sin importar su estado.",
+    "opciones": [
+      "--format: Formatea la salida",
+      "-q: Solo muestra el ID",
+      "--no-trunc: No trunca la salida"
+    ],
+    "ejemplos": [
+      "docker ps -l",
+      "docker ps -l -q",
+      "docker ps -l --format '{{.Names}} {{.Status}}'"
+    ]
+  },
+  {"command": "docker run IMAGEN COMANDO", "description": "Crea y ejecuta un nuevo contenedor a partir de una imagen. Ejemplo: 'docker run nginx' inicia un servidor nginx."},
+  {"command": "docker run -t -i IMAGEN COMANDO", "description": "Ejecuta un contenedor de forma interactiva. -i mantiene STDIN abierto y -t asigna una terminal virtual. Ejemplo: 'docker run -it ubuntu bash'"},
+  {"command": "docker run -d IMAGEN COMANDO", "description": "Ejecuta un contenedor en modo daemon (background). Ejemplo: 'docker run -d mongodb'"},
+  {"command": "docker run -P IMAGEN COMANDO", "description": "Ejecuta un contenedor mapeando automáticamente todos los puertos expuestos. Los puertos asignados se pueden ver con docker ps."},
+  {"command": "docker run -p 80:1080 IMAGEN COMANDO", "description": "Ejecuta un contenedor mapeando el puerto 1080 del contenedor al puerto 80 del host."},
+  {"command": "docker run --name=\"NOMBRE\" IMAGEN COMANDO", "description": "Ejecuta un contenedor asignándole un nombre específico para referenciarlo fácilmente."},
+  {"command": "docker stop CONTENEDOR", "description": "Detiene la ejecución de un contenedor en específico."},
+  {"command": "docker start CONTENEDOR", "description": "Inicia un contenedor que está detenido."},
+  {"command": "docker restart CONTENEDOR", "description": "Reinicia un contenedor, equivalente a ejecutar stop seguido de start."},
+  {"command": "docker rm CONTENEDOR", "description": "Elimina un contenedor detenido del sistema."},
+  {"command": "docker images", "description": "Lista todas las imágenes Docker descargadas en el sistema local."},
+  {"command": "docker rmi IMAGEN", "description": "Elimina una imagen Docker del sistema local. La imagen no debe estar en uso por ningún contenedor."},
+  {"command": "docker create IMAGEN", "description": "Crea un nuevo contenedor pero no lo inicia. Acepta las mismas opciones que run como -itP o --name."},
+  {"command": "docker exec -it CONTENEDOR bash", "description": "Inicia una sesión bash interactiva dentro de un contenedor en ejecución."},
+  {"command": "docker logs CONTENEDOR", "description": "Muestra los logs de salida de un contenedor específico."},
+  {"command": "docker logs -t CONTENEDOR", "description": "Muestra los logs de un contenedor incluyendo timestamps para cada entrada."},
+  {"command": "docker top CONTENEDOR", "description": "Muestra los procesos en ejecución dentro de un contenedor específico."},
+  {"command": "docker commit CONTENEDOR REPO", "description": "Crea una nueva imagen a partir del estado actual de un contenedor. Ejemplo: 'docker commit mi_contenedor mi_nueva_imagen:v1'"},
+  {"command": "docker build -t NOMBRE:TAG .", "description": "Construye una imagen Docker desde un Dockerfile en el directorio actual. Ejemplo: 'docker build -t miapp:1.0 .'"},
+  {"command": "docker pull IMAGEN[:TAG]", "description": "Descarga una imagen o repositorio desde un registro (por defecto Docker Hub). Ejemplo: 'docker pull ubuntu:20.04'"},
+  {"command": "docker push IMAGEN[:TAG]", "description": "Sube una imagen a un registro Docker. Requiere autenticación previa."},
+  {"command": "docker network ls", "description": "Lista todas las redes Docker disponibles en el sistema."},
+  {"command": "docker network create NOMBRE", "description": "Crea una nueva red Docker. Ejemplo: 'docker network create mi_red'"},
+  {"command": "docker volume create NOMBRE", "description": "Crea un nuevo volumen Docker para persistencia de datos."},
+  {"command": "docker volume ls", "description": "Lista todos los volúmenes Docker en el sistema."},
+  {"command": "docker inspect CONTENEDOR|IMAGEN", "description": "Muestra información detallada sobre un contenedor o imagen en formato JSON."},
+  {"command": "docker stats", "description": "Muestra estadísticas en tiempo real de todos los contenedores (CPU, memoria, red, etc)."},
+  {"command": "docker cp CONTENEDOR:RUTA RUTA_LOCAL", "description": "Copia archivos entre un contenedor y el sistema local. Ejemplo: 'docker cp mi_contenedor:/var/log/app.log ./logs/'"},
+  {"command": "docker save IMAGEN -o archivo.tar", "description": "Guarda una imagen Docker en un archivo tar para transferencia offline. docker save nginx -o nginx-backup.tar"},
+  {"command": "docker load -i archivo.tar", "description": "Carga una imagen Docker desde un archivo tar previamente guardado."},
+  {"command": "docker login", "description": "Inicia sesión en un registro Docker (por defecto Docker Hub)."},
+  {"command": "docker logout", "description": "Cierra sesión del registro Docker actual."},
+  {"command": "docker system prune", "description": "Elimina todos los recursos no utilizados (contenedores detenidos, redes no utilizadas, imágenes dangling, etc)."},
+  {"command": "docker system df", "description": "Muestra el uso de espacio del daemon Docker (contenedores, imágenes, volúmenes)."},
+  {"command": "docker rename CONTENEDOR NUEVO_NOMBRE", "description": "Renombra un contenedor existente."},
+  {"command": "docker update --memory 2G CONTENEDOR", "description": "Actualiza la configuración de recursos de un contenedor en ejecución."},
+  {"command": "docker container prune", "description": "Elimina todos los contenedores detenidos."},
+  {"command": "docker image prune", "description": "Elimina todas las imágenes sin usar."},
+  {"command": "docker volume prune", "description": "Elimina todos los volúmenes no utilizados por ningún contenedor."}
+]
